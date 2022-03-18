@@ -9,14 +9,14 @@ class CheckoutController {
     try{
       const { amount, type} = request.body;
       if (amount) {
-        const checkoutCreated = Checkout.create({ typerrrrr, amount });
+        const checkoutCreated = Checkout.create({ amount, type });//Estava typerrrrr. Editei para {amount, type }
         response.status(200).json(checkoutCreated);
       } else{
         span.setTag('error.msg', "Valor de 'amount' chegou nulo");
         response.status(500).send();
       }
     }catch(error){
-        span.setTag('error', error)
+        span.setTag('error.msg', error) //estava escrito apenas 'error'. Então troquei para 'error.msg'
         response.status(500).send();
     }
     
